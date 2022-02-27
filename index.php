@@ -8,13 +8,17 @@
 // POST | ---/commande/facture/:commande_numero
 // GET  | ---/facture/:commande_numero
 
-try{
+/* try{
     if(!empty($_GET['demande'])){
         // décomposition de l'url
         $url = explode("/", filter_var($_GET['demande'], FILTER_SANITIZE_URL));
         switch($url[0]){
             case "commandes":
-                echo 'commandes';
+                if(empty($url[1])){
+                    echo 'commandes';
+                }else{
+                    echo 'commandes client';
+                }
             break;
             case "commande":
                 echo 'commande';
@@ -33,6 +37,6 @@ try{
         "code" => $e->getCode()
     ];
     print_r($erreur);
-}
+} */
 
 
