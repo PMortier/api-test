@@ -9,10 +9,21 @@ Test mise en place d'une API de facturation en PHP
 
 ## endpoints finaux envisagés
 
-* ---/commandes (GET)
-* ---/commandes/[code client] (GET)
-* ---/commande/[numero de commande] (GET)
-* ---/commande/valider/[numero de commande] (PUT)
-* ---/commande/facture/[numero de commande] (POST)
-* ---/facture/[numero de commande] (GET)
+### Afficher toutes les commandes
+---/commandes (GET)
+
+### Afficher toutes les commandes d'un client via son code client
+---/commandes/[code client] (GET)
+
+### Afficher une commande via le numero de commande
+---/commande/[numero de commande] (GET)
+
+### Valider une commande en cours via le numero de commande
+---/commande/valider/[numero de commande] (PUT)
+
+### Créer la facture d'une commande validée via le numero de commande
+---/commande/facture/[numero de commande] (POST)
+
+### Afficher la facture d'une commande via le numero de commande
+---/facture/[numero de commande] (GET)
 
