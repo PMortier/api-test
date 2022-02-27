@@ -1,4 +1,5 @@
 <?php
+// Création d'un routeur dynamique avec les entrées utilisateur
 
 // GET  | ---/commandes
 // GET  | ---/commandes/:client_code
@@ -9,7 +10,20 @@
 
 try{
     if(!empty($_GET['demande'])){
-        echo "test";
+        // décomposition de l'url
+        $url = explode("/", filter_var($_GET['demande'], FILTER_SANITIZE_URL));
+        switch($url[0]){
+            case "commandes":
+                echo 'commandes';
+            break;
+            case "commande":
+                echo 'commande';
+            break;
+            case "facture":
+                echo 'facture';
+            break;
+            default : throw new Exception ("La demande n'est pas valide. Vérifiez l'url.");
+        }
     } else {
         throw new Exception("Problème de récupération de données.");
     }
