@@ -47,7 +47,7 @@ class Commandes {
         $query = $this->connexion->prepare($sql);
         
         // On attache le paramètre code client
-        $query->bindParam(':client_code', $_GET['client_code']);
+        $query->bindParam(':client_code', $this->client_code);
 
         $query->execute();
 
@@ -71,7 +71,7 @@ class Commandes {
         $query = $this->connexion->prepare($sql);
 
         // On attache le paramètre numero de commande
-        $query->bindParam(':commande_numero', $_GET['commande_numero']);
+        $query->bindParam(':commande_numero', $this->commande_numero);
 
         $query->execute();
 

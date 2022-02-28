@@ -19,7 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // On instancie les commandes
     $commandes = new Commandes($db);
 
-    if (!empty($_GET['commande_numero'])) {
+    // On récupère le numero de commande
+    $input = $_GET['commande_numero'];
+
+    if (!empty($input)) {
+        // On passe le numero de commande
+        $commandes->commande_numero = $input;
 
         // On récupère les données
         $commandes->getOrderByOrderNumber();

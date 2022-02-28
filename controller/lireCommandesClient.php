@@ -19,7 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     // On instancie les commandes
     $commandes = new Commandes($db);
 
-    if(!empty($_GET['client_code'])){
+    // On récupère le code client
+    $input = $_GET['client_code'];
+
+    if(!empty($input)){
+        $commandes->client_code = $input;
 
         // On récupère les données
         $commandes->getOrdersByClientNumber();
