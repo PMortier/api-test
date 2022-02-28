@@ -6,6 +6,7 @@ Test mise en place d'une API de facturation en PHP
 * ---/api-test/lireCommandes.php (GET)
 * ---/api-test/lireCommandesClient.php?client_code=[code client] (GET)
 * ---/api-test/lireCommande.php?commande_numero=[numero de commande] (GET)
+* ---/api-test/validerCommande.php?commande_numero=[numero de commande] (PUT)
 
 ## endpoints finaux envisagés
 
