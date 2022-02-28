@@ -51,7 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 if($factures->facture_id !== null){
                     $facture = [
                         "facture id" => $factures->facture_id,
-                        "commande_id" => $factures->commande_id
+                        "commande_id" => $factures->commande_id,
+                        "client_code" => $factures->client_code,
+                        "reglement_conditions" => $factures->reglement_conditions,
+                        "fournisseur_designation" => $factures->fournisseur_designation,
+                        "banque_designation" => $factures->banque_designation
                     ];
                     http_response_code(200);
                     echo json_encode($facture);
