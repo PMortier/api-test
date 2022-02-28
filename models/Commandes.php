@@ -4,7 +4,7 @@ class Commandes {
     //connexion
     private $connexion;
 
-    //propriétés de l'objet dont on a besoin
+    //propriétés de la commande
     public $commande_id;
     public $client_id;
     public $client_code;
@@ -12,6 +12,11 @@ class Commandes {
     public $commande_numero;
     public $commande_datecreation;
     public $commande_statut;
+    // propriétés de la commande_produit
+    public $produit_id;
+    public $produit_tva_id;
+    public $commande_produit_quantite;
+    public $commande_produit_pu_ht;
 
     /**
      * Constructeur avec $db pour la connexion à la base de données
@@ -104,6 +109,16 @@ class Commandes {
         }
 
         return false;
+    }
+
+    /**
+     * Lister les produits d'une commande via le numero de commande
+     * 
+     */
+    public function getProductsByOrderNumber(){
+        $sql = "SELECT o.commande_numero, p.produit_designation, op.commande_produit_quantite, op.commande_produit_pu_ht, t.tva_taux FROM produit p, commande_produit op, commande o, tva t, produit_tva pt WHERE op.commande_id = o.commande_id AND op.produit_id = p.produit_id AND pt.produit_tva_id = op.produit_tva_id AND pt.tva_id = t.tva_id AND o.commande_numero=:commande_numero";
+
+        
     }
     
 }
