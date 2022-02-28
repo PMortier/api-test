@@ -5,6 +5,7 @@ class Commandes {
     private $connexion;
 
     //propriétés de l'objet dont on a besoin
+    public $commande_id;
     public $client_id;
     public $client_code;
     public $fournisseur_designation;
@@ -66,7 +67,7 @@ class Commandes {
      * 
      */
     public function getOrderByOrderNumber(){
-        $sql = "SELECT o.commande_numero, c.client_code, f.fournisseur_designation, o.commande_datecreation, o.commande_statut FROM commande o, client c, fournisseur f WHERE o.client_id = c.client_id AND o.fournisseur_id = f.fournisseur_id AND o.commande_numero = :commande_numero";
+        $sql = "SELECT o.commande_id, o.commande_numero, c.client_code, f.fournisseur_designation, o.commande_datecreation, o.commande_statut FROM commande o, client c, fournisseur f WHERE o.client_id = c.client_id AND o.fournisseur_id = f.fournisseur_id AND o.commande_numero = :commande_numero";
 
         $query = $this->connexion->prepare($sql);
 
@@ -77,6 +78,7 @@ class Commandes {
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
+        $this->commande_id = $row['commande_id'];
         $this->client_code = $row['client_code'];
         $this->commande_numero = $row['commande_numero'];
         $this->fournisseur_designation = $row['fournisseur_designation'];
