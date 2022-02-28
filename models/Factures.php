@@ -38,6 +38,7 @@ class Factures{
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
         $this->facture_id = $row['facture_id'];
+        
     }
 
     /**

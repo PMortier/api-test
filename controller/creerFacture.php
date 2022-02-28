@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if($result['commande_statut'] === 'validée'){
                 //Instructions si commande validée
-                // On instancie Factures
                 $facture = new Factures($db);
                 // On passe les données nécessaires à Factures
                 $facture->commande_id = $result['commande_id'];
