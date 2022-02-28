@@ -112,7 +112,7 @@ class Commandes {
     }
 
     /**
-     * Lister les produits d'une commande via le numero de commande
+     * Lister les produits d'une commande avec tva associée, via le numero de commande
      * 
      */
     public function getProductsByOrderNumber(){
