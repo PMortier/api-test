@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $facture->commande_id = $result['commande_id'];
                 // On vérifie que la facture n'existe pas déjà
                 $facture->getInvoiceByOrderId();
-                if($facture->facture_id !=null){
+                if($facture->facture_id !== null){
                     http_response_code(403);
                     echo json_encode(["message" => "Une facture existe déjà pour cette commande"]);
                 }else{

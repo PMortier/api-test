@@ -50,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 // On vérifie que la facture existe
                 if($factures->facture_id !== null){
                     $facture = [
-                        "facture id" => $factures->facture_id
+                        "facture id" => $factures->facture_id,
+                        "commande_id" => $factures->commande_id
                     ];
                     http_response_code(200);
                     echo json_encode($facture);
