@@ -38,7 +38,7 @@ class Commandes {
     }
 
     /**
-     * Lecture des commandes d'un client via son code client
+     * Lecture de toutes les commandes d'un client via son code client
      * 
      */
     public function getOrdersByClientNumber(){
@@ -46,7 +46,7 @@ class Commandes {
         
         $query = $this->connexion->prepare($sql);
         
-        // On attache l'id
+        // On attache le paramètre code client
         $query->bindParam(':client_code', $_GET['client_code']);
 
         $query->execute();
@@ -62,7 +62,7 @@ class Commandes {
     }
 
     /**
-     * Lecture d'une commandes en fonction du numéro de commande
+     * Lecture d'une commande en fonction du numéro de commande
      * 
      */
     public function getOrderByOrderNumber(){
@@ -70,7 +70,7 @@ class Commandes {
 
         $query = $this->connexion->prepare($sql);
 
-        // On attache l'id
+        // On attache le paramètre numero de commande
         $query->bindParam(':commande_numero', $_GET['commande_numero']);
 
         $query->execute();
@@ -83,6 +83,25 @@ class Commandes {
         $this->commande_datecreation = $row['commande_datecreation'];
         $this->commande_statut = $row['commande_statut'];
 
+    }
+
+    /**
+     * Valider une commande via le numero de commande 
+     * 
+     */
+    public function updateOrderStatusToValidated(){
+        $sql = "UPDATE commande SET commande_statut = 'validée' WHERE commande_numero = :commande_numero";
+
+        $query = $this->connexion->prepare($sql);
+
+        // On attache le paramètre numero de commande
+        $query->bindParam(':commande_numero', $this->commande_numero);
+
+        if($query->execute() && $query->rowCount() > 0){
+            return true;
+        }
+
+        return false;
     }
     
 }
