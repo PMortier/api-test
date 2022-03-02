@@ -4,12 +4,16 @@ class Factures{
     //connexion
     private $connexion;
 
-    //Propriétés de l'objet dont on a besoin
+    //Propriétés facture
     public $facture_id;
-    public $commande_id;
     public $facture_datecreation;
     public $facture_echeance;
     public $facture_statut;
+
+    // Proprétiés commande
+    public $commande_id;
+    public $commande_numero;
+    public $commande_devise;
 
     // Propriétés banque
     public $banque_designation;
@@ -58,7 +62,7 @@ class Factures{
      * 
      */
     public function getInvoiceByOrderId(){
-        $sql = "SELECT i.facture_id, i.facture_datecreation, i.facture_echeance, i.facture_statut, i.commande_id, o.commande_numero, c.client_code, c.client_designation, c.client_statut, c.client_rue, c.client_cp, c.client_ville, r.reglement_conditions, r.reglement_type, f.fournisseur_designation, f.fournisseur_logourl, f.fournisseur_statut, f.fournisseur_rue, f.fournisseur_cp, f.fournisseur_ville, f.fournisseur_telephone, f.fournisseur_siteweb, f.fournisseur_capital, f.fournisseur_siret, f.fournisseur_naf_ape, f.fournisseur_num_tva, b.banque_designation, b.banque_iban, b.banque_bicswift FROM facture i, commande o, client c, reglement r, fournisseur f, banque b WHERE i.commande_id = o.commande_id AND o.client_id = c.client_id AND o.reglement_id = r.reglement_id AND o.fournisseur_id = f.fournisseur_id AND b.banque_id = f.banque_id AND i.commande_id = :commande_id";
+        $sql = "SELECT i.facture_id, i.facture_datecreation, i.facture_echeance, i.facture_statut, i.commande_id, o.commande_numero, o.commande_devise, c.client_code, c.client_designation, c.client_statut, c.client_rue, c.client_cp, c.client_ville, r.reglement_conditions, r.reglement_type, f.fournisseur_designation, f.fournisseur_logourl, f.fournisseur_statut, f.fournisseur_rue, f.fournisseur_cp, f.fournisseur_ville, f.fournisseur_telephone, f.fournisseur_mail, f.fournisseur_siteweb, f.fournisseur_capital, f.fournisseur_siret, f.fournisseur_naf_ape, f.fournisseur_num_tva, b.banque_designation, b.banque_iban, b.banque_bicswift FROM facture i, commande o, client c, reglement r, fournisseur f, banque b WHERE i.commande_id = o.commande_id AND o.client_id = c.client_id AND o.reglement_id = r.reglement_id AND o.fournisseur_id = f.fournisseur_id AND b.banque_id = f.banque_id AND i.commande_id = :commande_id";
 
         $query = $this->connexion->prepare($sql);
 
@@ -76,6 +80,7 @@ class Factures{
             $this->facture_statut = $row['facture_statut'];
             $this->commande_id = $row['commande_id'];
             $this->commande_numero = $row['commande_numero'];
+            $this->commande_devise = $row['commande_devise'];
             $this->client_code = $row['client_code'];
             $this->client_designation = $row['client_designation'];
             $this->client_statut = $row['client_statut'];
@@ -91,6 +96,7 @@ class Factures{
             $this->fournisseur_cp = $row['fournisseur_cp'];
             $this->fournisseur_ville = $row['fournisseur_ville'];
             $this->fournisseur_telephone = $row['fournisseur_telephone'];
+            $this->fournisseur_mail = $row['fournisseur_mail'];
             $this->fournisseur_siteweb = $row['fournisseur_siteweb'];
             $this->fournisseur_capital = $row['fournisseur_capital'];
             $this->fournisseur_siret = $row['fournisseur_siret'];
