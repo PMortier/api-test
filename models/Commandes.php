@@ -116,12 +116,9 @@ class Commandes {
      * 
      */
     public function getProductsByOrderId($commande_id){
-        $sql = "SELECT o.commande_numero, p.produit_designation, op.commande_produit_quantite, op.commande_produit_pu_ht, t.tva_taux FROM produit p, commande_produit op, commande o, tva t, produit_tva pt WHERE op.commande_id = o.commande_id AND op.produit_id = p.produit_id AND pt.produit_tva_id = op.produit_tva_id AND pt.tva_id = t.tva_id AND o.commande_id=$commande_id";
+        $sql = "SELECT p.produit_designation, op.commande_produit_quantite, op.commande_produit_pu_ht, t.tva_taux FROM produit p, commande_produit op, commande o, tva t, produit_tva pt WHERE op.commande_id = o.commande_id AND op.produit_id = p.produit_id AND pt.produit_tva_id = op.produit_tva_id AND pt.tva_id = t.tva_id AND o.commande_id=$commande_id";
 
         $query = $this->connexion->prepare($sql);
-
-        /* // On attache le paramètre numero de commande
-        $query->bindParam(':commande_id', $this->commande_id); */
 
         $query->execute();
 
