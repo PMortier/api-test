@@ -49,13 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $factures->getInvoiceByOrderId();
                 // On vérifie que la facture existe
                 if($factures->facture_id !== null){
+                    // Récupération des produits
+                    $produits = $commandes->getProductsByOrderId($result['commande_id']);
+                    $tableauProduits = $produits->fetchAll(PDO::FETCH_ASSOC);
+                    
                     $facture = [
-                        "facture id" => $factures->facture_id,
+                        "facture_id" => $factures->facture_id,
                         "commande_id" => $factures->commande_id,
                         "client_code" => $factures->client_code,
                         "reglement_conditions" => $factures->reglement_conditions,
                         "fournisseur_designation" => $factures->fournisseur_designation,
-                        "banque_designation" => $factures->banque_designation
+                        "banque_designation" => $factures->banque_designation,
+                        "produits commandés" => $tableauProduits
                     ];
                     http_response_code(200);
                     echo json_encode($facture);
